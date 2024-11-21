@@ -3,10 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="1.js"></script>
     <title>Алко-Анализатор</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     Алко-Анализатор
+    <form id="alcohol-form">
+      <label for="drink">Тип напитка:</label>
+      <select id="drink">
+        <option value="beer">Пиво</option>
+        <option value="vodka">Водка</option>
+      </select>
+
+      <label for="quantity">Количество (мл):</label>
+      <input type="number" id="quantity" required />
+
+      <label for="alcohol-content">Содержание алкоголя (%):</label>
+      <input type="number" id="alcohol-content" required />
+
+      <button type="submit">Посчитать</button>
+    </form>
+
+    <div id="results">
+      <p>Общий объем выпитого алкоголя: <span id="total-volume"></span></p>
+      <p>Общее содержание алкоголя: <span id="total-alcohol"></span> мл</p>
+    </div>
+    <!-- <script src="script.js"></script> -->
   </body>
 </html>
