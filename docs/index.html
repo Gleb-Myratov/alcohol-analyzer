@@ -7,26 +7,63 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    Алко-Анализатор
-    <form id="alcohol-form">
-      <label for="drink">Тип напитка:</label>
-      <select id="drink">
-        <option value="beer">Пиво</option>
-        <option value="vodka">Водка</option>
-      </select>
+    <div class="container header">
+      <img src="../assets/logo.png" alt="Логотип" class="header__logo" />
+      <div class="header__title">Алко-Анализатор</div>
+      <div class="header__menu">1</div>
+    </div>
+    <div class="container table">
+      <table class="table__content">
+        <thead>
+          <tr>
+            <th>Название напитка</th>
+            <th>Содержание алкоголя</th>
+            <th>Объем мл</th>
+            <th>Цена</th>
+            <th>Кол-во выпитого</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Водка</td>
+            <td>40</td>
+            <td>500</td>
+            <td>300</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Пиво</td>
+            <td>4.5</td>
+            <td>450</td>
+            <td>70</td>
+            <td>1000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container footer">
+      <div class="footer__form">
+        <form id="alcohol-form">
+          <label for="drink">Тип напитка:</label>
+          <select id="drink">
+            <option value="beer">Пиво</option>
+            <option value="vodka">Водка</option>
+          </select>
 
-      <label for="quantity">Количество (мл):</label>
-      <input type="number" id="quantity" required />
+          <label for="quantity">Количество (мл):</label>
+          <input type="number" id="quantity" required />
 
-      <label for="alcohol-content">Содержание алкоголя (%):</label>
-      <input type="number" id="alcohol-content" required />
+          <label for="alcohol-content">Содержание алкоголя (%):</label>
+          <input type="number" id="alcohol-content" required />
 
-      <button type="submit">Посчитать</button>
-    </form>
+          <button type="submit">Посчитать</button>
+        </form>
 
-    <div id="results">
-      <p>Общий объем выпитого алкоголя: <span id="total-volume"></span></p>
-      <p>Общее содержание алкоголя: <span id="total-alcohol"></span> мл</p>
+        <div id="results">
+          <p>Общий объем выпитого алкоголя: <span id="total-volume"></span></p>
+          <p>Общее содержание алкоголя: <span id="total-alcohol"></span> мл</p>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

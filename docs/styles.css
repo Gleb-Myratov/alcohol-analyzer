@@ -6,11 +6,18 @@ body {
 }
 
 form {
-  margin-bottom: 20px;
+  margin-bottom: 10 px;
 }
 
 input,
 select,
 button {
   margin: 5px 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+header {
+  display: flex;
 }
