@@ -1,23 +1,75 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  padding-top: 100px;
 }
-
-form {
-  margin-bottom: 10 px;
-}
-
-input,
-select,
-button {
-  margin: 5px 0;
+.page-container {
+  border-radius: 10px;
+  padding: 10px 50px 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #e0e4eb;
+  align-items: flex-start;
+  max-width: 1200px;
 }
 .container {
   display: flex;
   justify-content: center;
 }
-header {
+.header {
   display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.header__logo {
+  width: 150px;
+  height: auto;
+}
+.header__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.header__title-name {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+.header__title-description {
+  color: #8f97a3;
+  font-size: 27px;
+}
+
+/* грид */
+.table {
+  width: 100%;
+}
+
+.table__content {
+  width: 100%;
+  background-color: #fff;
+  border: 2px #8f97a3 solid;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  justify-items: center;
+  grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 2fr 0.5fr;
+}
+
+.table__row {
+  display: contents; /* Ячейки в строке используют родительский grid */
+}
+
+.table__cell {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.table__header .table__cell {
+  font-weight: bold;
+  background-color: #f4f4f4;
 }
