@@ -1,0 +1,86 @@
+/* Общие сбросы */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Нормализация для некоторых элементов */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%; /* Поддержка Safari */
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* Убираем отступы и стили на заголовках */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* Убираем стандартные стили списка */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Убираем дефолтные стили ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Блоки по умолчанию */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+/* Картинки и видео */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Убираем отступы в таблицах */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Форма: убираем дефолтные стили */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Убираем стандартный фон в кнопках */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
