@@ -48,28 +48,17 @@ body {
 }
 
 .table__content {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 2fr 0.5fr;
+  gap: 20px;
   width: 100%;
   background-color: #fff;
-  border: 2px #8f97a3 solid;
   border-radius: 20px;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 20px;
+  border: 2px #8f97a3 solid;
   justify-items: center;
-  grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 2fr 0.5fr;
 }
 
 .table__row {
-  display: contents; /* Ячейки в строке используют родительский grid */
-}
-
-.table__cell {
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-}
-
-.table__header .table__cell {
-  font-weight: bold;
-  background-color: #f4f4f4;
+  background: #000;
+  display: contents;
 }
