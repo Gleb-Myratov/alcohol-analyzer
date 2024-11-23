@@ -48,17 +48,20 @@ body {
 }
 
 .table__content {
+  /* padding: 20px 10px; */
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 2fr 0.5fr;
-  gap: 20px;
   width: 100%;
   background-color: #fff;
   border-radius: 20px;
   border: 2px #8f97a3 solid;
   justify-items: center;
 }
-
-.table__row {
-  background: #000;
-  display: contents;
+.table__cell-header {
+  border-bottom: 5px solid #000;
+}
+.table__cell {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
