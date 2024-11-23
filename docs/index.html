@@ -14,8 +14,8 @@
   </head>
   <body>
     <div class="page-container">
-      <div class="header">
-        <div class="container header">
+      <div class="container">
+        <div class="header">
           <img src="assets/logo.png" alt="Логотип" class="header__logo" />
           <div class="header__title">
             <div class="header__title-name">Алко-Анализатор</div>
@@ -23,8 +23,8 @@
           </div>
         </div>
       </div>
-      <div class="table">
-        <div class="container table">
+      <div class="container">
+        <div class="table">
           <div class="table__content">
             <div class="table__cell table__cell-header table__cell--radio">
               <input
@@ -87,9 +87,9 @@
               />
             </div>
             <div class="table__cell">Ром</div>
-            <div class="table__cell">40</div>
+            <div class="table__cell">35</div>
             <div class="table__cell">500</div>
-            <div class="table__cell">300</div>
+            <div class="table__cell">1000</div>
             <div class="table__cell">200</div>
             <div class="table__cell table__cell--remove">
               <button class="table__remove-button">del</button>
@@ -97,34 +97,15 @@
           </div>
         </div>
       </div>
-      <div class="footer">
-        <div class="container footer">
-          <div class="footer__form">
-            <form id="alcohol-form">
-              <label for="drink">Тип напитка:</label>
-              <select id="drink">
-                <option value="beer">Пиво</option>
-                <option value="vodka">Водка</option>
-              </select>
-
-              <label for="quantity">Количество (мл):</label>
-              <input type="number" id="quantity" required />
-
-              <label for="alcohol-content">Содержание алкоголя (%):</label>
-              <input type="number" id="alcohol-content" required />
-
-              <button type="submit">Посчитать</button>
-            </form>
-
-            <div id="results">
-              <p>
-                Общий объем выпитого алкоголя: <span id="total-volume"></span>
-              </p>
-              <p>
-                Общее содержание алкоголя: <span id="total-alcohol"></span> мл
-              </p>
-            </div>
-          </div>
+      <div class="container">
+        <div class="footer">
+          <button class="footer__add-button">
+            <img
+              class="footer__add-button-image"
+              src="assets/plus.png"
+              alt="Add"
+            />
+          </button>
         </div>
       </div>
     </div>
