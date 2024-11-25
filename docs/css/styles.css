@@ -3,7 +3,7 @@ body {
   justify-content: center;
   font-family: "Roboto", sans-serif;
   background-color: #b0c4de;
-  padding-top: 100px;
+  margin-top: 100px;
 }
 .page-container {
   display: flex;
@@ -71,7 +71,7 @@ body {
   text-align: center;
 }
 
-.table__cell-header {
+.table__cell--header {
   border-bottom: 3px solid #dcdee1;
   color: #8f97a3;
   font-weight: 500;
@@ -86,10 +86,48 @@ body {
   background: #5c8dd6;
   border-radius: 20px;
   border: 2px solid #1f437a;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .footer__add-button-image {
-  padding: 10px 0;
-  max-width: 100%; /* Не превышает размеры кнопки */
-  max-height: 100%;
-  object-fit: contain;
+  max-height: 60%;
+  width: auto;
+}
+.table__checkbox-button {
+  display: none;
+}
+.table__checkbox-icon {
+  display: flex;
+  border: #1f437a solid 1.7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+.table__checkbox-button:checked + .table__checkbox-icon {
+  background: #5c8dd6;
+  background-image: url("../assets/Vector 5 (Stroke).png");
+  background-position: center center;
+  background-size: 75%;
+  background-repeat: no-repeat;
+}
+.table__checkbox-button:checked + .table__checkbox-icon {
+  background: #5c8dd6;
+  background-image: url("../assets/checkbox.png");
+  background-position: center center;
+  background-size: 75%;
+  background-repeat: no-repeat;
+}
+.table__checkbox-button--header:checked + .table__checkbox-icon--header {
+  background-image: url("../assets/checkbox-select-all.png");
+}
+.table__checkbox-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
