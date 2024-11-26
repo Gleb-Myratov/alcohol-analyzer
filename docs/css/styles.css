@@ -70,7 +70,6 @@ body {
   color: #454b54;
   text-align: center;
 }
-
 .table__cell--header {
   border-bottom: 3px solid #dcdee1;
   color: #8f97a3;
@@ -108,13 +107,6 @@ body {
 }
 .table__checkbox-button:checked + .table__checkbox-icon {
   background: #5c8dd6;
-  background-image: url("../assets/Vector 5 (Stroke).png");
-  background-position: center center;
-  background-size: 75%;
-  background-repeat: no-repeat;
-}
-.table__checkbox-button:checked + .table__checkbox-icon {
-  background: #5c8dd6;
   background-image: url("../assets/checkbox.png");
   background-position: center center;
   background-size: 75%;
@@ -124,9 +116,9 @@ body {
   background-image: url("../assets/checkbox-select-all.png");
 }
 .table__checkbox-label {
-  width: 100%;
-  height: 100%;
-  display: flex;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   cursor: pointer;
