@@ -1,0 +1,18 @@
+{
+  "name": "alcohol-analyzer",
+  "version": "1.0.0",
+  "description": "https://gleb-myratov.github.io/alcohol-analyzer/",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.3"
+  },
+  "scripts": {
+    "start": "browser-sync start --server './docs' --directory --files './docs/**/*.html, ./docs/css/**/*.css'"
+  }
+}
