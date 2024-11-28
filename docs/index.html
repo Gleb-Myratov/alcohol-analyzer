@@ -132,14 +132,14 @@
       </div>
       <div class="container">
         <div class="footer">
-          <button class="add-button add-button--footer">
+          <button class="add-button add-button--footer" onclick="openModal()">
             <img class="add-button-image" src="assets/plus.png" alt="Add" />
           </button>
         </div>
       </div>
     </div>
-    <div class="modal modal__add">
-      <div class="modal__content">
+    <div class="modal modal--add" id="modal" onclick="closeModal()">
+      <div class="modal__content modal__content--add">
         <div class="modal__add-tabel">
           <div class="table__content table__content--add">
             <div class="table__cell table__cell--header">
