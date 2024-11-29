@@ -53,17 +53,17 @@ body {
 }
 
 .table__content {
-  padding: 0px 0;
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
-  grid-template-rows: repeat(4, 1fr);
   width: 100%;
   background-color: #fff;
   border-radius: 20px;
   border: 2px #8f97a3 solid;
   justify-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  grid-template-rows: repeat(4, 1fr);
 }
+
 .table__cell {
   display: flex;
   justify-content: center;
@@ -103,6 +103,9 @@ body {
 .add-button-image {
   max-height: 70%;
   max-width: 70%;
+}
+.table__row {
+  display: contents;
 }
 .table__checkbox-button {
   display: none;
