@@ -57,7 +57,6 @@
                 Количество<br />выпитого
               </div>
               <div class="table__cell table__cell--header"></div>
-              <!--  -->
             </div>
             <div class="table__row" data-row="1">
               <div class="table__cell table__cell--checkbox">
@@ -151,10 +150,10 @@
         </div>
       </div>
     </div>
-    <div class="modal modal--add" id="modal" onclick="closeModal()">
-      <div class="modal__content modal__content--add">
-        <div class="modal__add-tabel">
-          <div class="table__content table__content--add">
+    <div class="modal modal--form" id="modal" onclick="closeModal()">
+      <div class="modal__content modal__content--form">
+        <form class="modal__form-tabel">
+          <div class="table__content table__content--form">
             <div class="table__row">
               <div class="table__cell table__cell--header">
                 Название<br />напитка
@@ -169,14 +168,14 @@
               </div>
             </div>
             <div class="table__row">
-              <div class="table__cell"></div>
-              <div class="table__cell"></div>
-              <div class="table__cell"></div>
-              <div class="table__cell"></div>
-              <div class="table__cell"></div>
+              <input type="text" class="table__cell" />
+              <input type="number" class="table__cell" />
+              <input type="number" class="table__cell" />
+              <input type="number" class="table__cell" />
+              <input type="number" class="table__cell" />
             </div>
           </div>
-        </div>
+        </form>
         <button class="add-button add-button--modal">
           <img class="add-button-image" src="assets/plus.png" alt="Add" />
         </button>
