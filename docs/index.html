@@ -18,7 +18,7 @@
         <div class="header">
           <img src="assets/logo.png" alt="Логотип" class="header__logo" />
           <div class="header__title">
-            <div class="header__title-name">Алко-Анализатор</div>
+            <h1 class="header__title-name">Алко-Анализатор</h1>
             <div class="header__title-description">Просто посчитай</div>
           </div>
         </div>
@@ -79,7 +79,7 @@
               <div class="table__cell">300</div>
               <div class="table__cell">200</div>
               <div class="table__cell table__cell--remove">
-                <button class="table__remove-button" onclick="deleteRow(1)">
+                <button class="table__remove-button">
                   <span class="table__remove-button-icon"></span>
                 </button>
               </div>
@@ -100,13 +100,13 @@
                   <span class="table__checkbox-icon"></span>
                 </label>
               </div>
-              <div class="table__cell">Пиво</div>
+              <div class="table__cell">Lorem.</div>
               <div class="table__cell">4.5</div>
               <div class="table__cell">450</div>
               <div class="table__cell">70</div>
               <div class="table__cell">1000</div>
               <div class="table__cell table__cell--remove">
-                <button class="table__remove-button" onclick="deleteRow(2)">
+                <button class="table__remove-button">
                   <span class="table__remove-button-icon"></span>
                 </button>
               </div>
@@ -134,7 +134,7 @@
               <div class="table__cell">1000</div>
               <div class="table__cell">200</div>
               <div class="table__cell table__cell--remove">
-                <button class="table__remove-button" onclick="deleteRow(3)">
+                <button class="table__remove-button">
                   <span class="table__remove-button-icon"></span>
                 </button>
               </div>
@@ -167,7 +167,7 @@
                 Количество<br />выпитого
               </div>
             </div>
-            <div class="table__row">
+            <div class="table__row" id="row-inputs">
               <input type="text" class="table__cell" />
               <input type="number" class="table__cell" />
               <input type="number" class="table__cell" />
@@ -176,7 +176,7 @@
             </div>
           </div>
         </form>
-        <button class="add-button add-button--modal">
+        <button class="add-button add-button--modal" onclick="test()">
           <img class="add-button-image" src="assets/plus.png" alt="Add" />
         </button>
       </div>

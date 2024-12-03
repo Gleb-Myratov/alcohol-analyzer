@@ -61,27 +61,26 @@ body {
   border: 2px #8f97a3 solid;
   justify-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  grid-template-rows: repeat(4, 1fr);
-  max-height: 250px;
+  /* grid-template-rows: repeat(4, 1fr); */
+  /* max-height: 250px; */
 }
 
 .table__cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  text-align: center;
+  place-items: center;
   width: 100%;
   padding: 10px;
   font-weight: 200;
   color: #454b54;
   border-bottom: 2px solid #dcdee1;
   border-right: 2px solid #dcdee1;
-  text-align: center;
   word-break: break-all;
   overflow-y: scroll;
-  overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  max-width: 120px;
+  max-width: 130px;
+  height: 60px;
 }
 .table__cell::-webkit-scrollbar {
   display: none; /* Скрыть скроллбар */
