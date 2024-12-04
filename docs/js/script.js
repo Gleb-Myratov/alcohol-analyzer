@@ -1,28 +1,47 @@
-const modalOverlay = document.getElementById("modal");
-const table = document.querySelector(".table__content");
-const deleteRowButtons = document.querySelectorAll(".table__remove-button");
+const tabel = document.querySelector(".tabel__content");
 
-deleteRowButtons[2].addEventListener("click", deleteRow1);
+const removeRowButtons = document.querySelectorAll(".tabel__remove-button");
+const mainAddButton = document.getElementById("main-add-button");
+const createRowButton = document.getElementById("create-row-button");
 
-function openModal() {
-  document.getElementById("modal").classList.add("active");
-}
-
-function closeModal() {
-  if (event.target == modalOverlay)
-    document.getElementById("modal").classList.remove("active");
-}
-/* function deleteRow(numberRow) {
-  document.querySelector(`.table__row[data-row="${numberRow}"]`).remove();
-  table.style.gridTemplateRows = `repeat(${table.children.length}, 1fr)`;
-  // table.classList.add("new-grid-style");
-} */
+const modal = document.getElementById("modal");
 const rowInpiuts = document.getElementById("row-inputs");
+const tabelInputs = document.querySelectorAll(".tabel__cell--input");
 
-function test() {
-  console.log(rowInpiuts.querySelector("input").value);
+const tabelTemplate = document.querySelector(".tabel__template");
+
+removeRowButtons.forEach((el, i) => {
+  el.addEventListener("click", () => removeRow(el, i));
+  // el.setAttribute("data-row-remove", `${i}`);
+});
+function removeRow(el, i) {
+  el.parentElement.parentElement.remove();
 }
 
-function deleteRow1() {
-  console.dir(this);
-}
+mainAddButton.addEventListener("click", () => {
+  modal.classList.add("active");
+});
+
+modal.addEventListener("click", () => {
+  if (event.target == modal) modal.classList.remove("active");
+});
+
+createRowButton.addEventListener("click", () => {
+  let emptyInputs = false;
+  tabelInputs.forEach((el) => {
+    if (el.value.length === 0) emptyInputs = true;
+  });
+  if (!emptyInputs) {
+    tabel.append(tabelTemplate.content.cloneNode(true));
+    let newRow = tabel.querySelectorAll(".tabel__row");
+    let newRowCells =
+      newRow[newRow.length - 1].querySelectorAll(".tabel__cell");
+    for (let i = 0; i < 5; i++) {
+      newRowCells[i + 1].textContent = tabelInputs[i].value;
+    }
+    modal.classList.remove("active");
+  } else {
+    console.log("добавь");
+    console.log(emptyInputs);
+  }
+});

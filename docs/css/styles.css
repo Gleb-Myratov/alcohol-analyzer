@@ -47,12 +47,12 @@ body {
 }
 
 /* грид */
-.table {
+.tabel {
   width: 100%;
   margin-bottom: 10px;
 }
 
-.table__content {
+.tabel__content {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   width: 100%;
@@ -65,10 +65,10 @@ body {
   /* max-height: 250px; */
 }
 
-.table__cell {
+.tabel__cell {
   display: grid;
   text-align: center;
-  place-items: center;
+  align-items: center;
   width: 100%;
   padding: 10px;
   font-weight: 200;
@@ -82,18 +82,19 @@ body {
   max-width: 130px;
   height: 60px;
 }
-.table__cell::-webkit-scrollbar {
+
+.tabel__cell::-webkit-scrollbar {
   display: none; /* Скрыть скроллбар */
 }
-.table__cell--header {
+.tabel__cell--header {
   color: #8f97a3;
   font-weight: 500;
 }
 
-.table__row:last-child .table__cell {
+.tabel__row:last-child .tabel__cell {
   border-bottom: none;
 }
-.table__cell:last-child {
+.tabel__cell:last-child {
   border-right: none;
 }
 
@@ -117,30 +118,30 @@ body {
   max-height: 70%;
   max-width: 70%;
 }
-.table__row {
+.tabel__row {
   display: contents;
 }
-.table__checkbox-button {
+.tabel__checkbox-button {
   display: none;
 }
-.table__checkbox-icon {
+.tabel__checkbox-icon {
   display: flex;
   border: #1f437a solid 1.7px;
   width: 18px;
   height: 18px;
   border-radius: 5px;
 }
-.table__checkbox-button:checked + .table__checkbox-icon {
+.tabel__checkbox-button:checked + .tabel__checkbox-icon {
   background: #5c8dd6;
   background-image: url("../assets/checkbox.png");
   background-position: center center;
   background-size: 75%;
   background-repeat: no-repeat;
 }
-.table__checkbox-button--header:checked + .table__checkbox-icon--header {
+.tabel__checkbox-button--header:checked + .tabel__checkbox-icon--header {
   background-image: url("../assets/checkbox-select-all.png");
 }
-.table__checkbox-label {
+.tabel__checkbox-label {
   width: 100%;
   height: 100%;
   display: flex;
@@ -148,14 +149,14 @@ body {
   justify-content: center;
   cursor: pointer;
 }
-.table__remove-button {
+.tabel__remove-button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
 }
-.table__remove-button-icon {
+.tabel__remove-button-icon {
   background-position: 50% 40%;
   background-image: url("../assets/trash-icon.png");
   height: 100%;
@@ -163,7 +164,7 @@ body {
   background-size: 50%;
   background-repeat: no-repeat;
 }
-.table__content--form {
+.tabel__content--form {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
 }

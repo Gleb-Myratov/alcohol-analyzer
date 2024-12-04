@@ -83,10 +83,7 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-  all: unset; /* Сброс всех стандартных стилей */
   display: inline-block; /* Устанавливаем display для кнопки */
-  cursor: pointer; /* Устанавливаем курсор как указатель */
-  text-align: center; /* Центрируем текст */
 }
 input {
   border: none;
