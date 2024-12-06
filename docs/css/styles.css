@@ -88,7 +88,15 @@ body {
   max-width: 130px;
   height: 60px;
 }
-.tabel__cell::before {
+
+.tabel__cell--input {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  font-weight: 200;
+  font-family: "Roboto", sans-serif;
+
+  /* align-items: center; */
 }
 
 .tabel__cell::-webkit-scrollbar {
@@ -106,13 +114,15 @@ body {
   border-right: none;
 } */
 
-.input-required::after {
+.alert::after {
+  cursor: ew-resize;
   position: absolute;
   content: "";
   border: 2px red solid;
-  inset: 2px;
-  border-radius: 7px;
+  inset: 0px;
+  border-radius: 20px;
   animation: blink-border 2.5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes blink-border {

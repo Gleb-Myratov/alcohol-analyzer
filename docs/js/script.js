@@ -10,19 +10,27 @@ const tabelInputs = document.querySelectorAll(".tabel__cell--input");
 
 const tabelTemplate = document.querySelector(".tabel__template"); // шаблон строки
 
+function removeAlert() {
+  tabelInputs.forEach((_, i) => {
+    tabelInputs[i].parentElement.classList.remove("alert");
+    tabelInputs[i].offsetWidth; //  перерисовка
+  });
+}
+
 removeRowButtons.forEach((el) => {
   el.addEventListener("click", () => {
     el.parentElement.parentElement.remove();
   });
 });
 
-tabelInputs.forEach((el) => {
-  el.value = 111; // временно заполнил инпуты
-});
+// tabelInputs.forEach((el) => {
+//   el.value = 111; // временно заполнил инпуты
+// });
 
 // модальное окно
 mainAddButton.addEventListener("click", () => {
   modal.classList.add("active");
+  removeAlert();
 });
 
 modal.addEventListener("click", (event) => {
@@ -30,18 +38,20 @@ modal.addEventListener("click", (event) => {
 });
 
 //  добавление заполненной строки в таблицу
+
 createRowButton.addEventListener("click", () => {
   let rnd = Math.random();
-  let emptyInputs = false; // пустая ячейка
+  removeAlert();
+  let validInput = true; // пустая ячейка
   tabelInputs.forEach((el, i) => {
-    if (el.value.length === 0) {
-      emptyInputs = true;
-      tabelInputs[i].classList.remove("input-required");
-      tabelInputs[i].classList.add("input-required");
+    if (el.value.length < 1 || el.value < 1 || el.value > 9999999) {
+      console.log(el.value);
+      tabelInputs[i].parentElement.classList.add("alert");
+      validInput = false;
     } // проверка на пустой инпут
   });
-  if (!emptyInputs) {
-    tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблонаи добавление в таблу
+  if (validInput) {
+    tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
     let tabRows = tabel.querySelectorAll(".tabel__row");
     let newRow = tabRows[tabRows.length - 1]; // новая строка
     let newRowList = newRow.querySelectorAll(".tabel__cell"); // список новой строки
@@ -54,17 +64,24 @@ createRowButton.addEventListener("click", () => {
     }
     newRowDelBtn.addEventListener("click", () =>
       newRowDelBtn.parentElement.parentElement.remove()
-    ); // удаление строки
+    ); // удаление строки в новой строке
 
     newRow.setAttribute("data-row", `${rnd}`);
-    newRowLabel.setAttribute("for", `${rnd}`);
+    newRowLabel.setAttribute("for", `${rnd}`); // уникальные индефикаторы
     newRowInput.setAttribute("id", `${rnd}`);
-    console.log(tabelInputs);
 
     // tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
     modal.classList.remove("active");
   } else {
     console.log("добавь");
-    console.log(emptyInputs);
+    console.log(validInput);
+  }
+});
+
+let validInput = true;
+tabelInputs.forEach((el, i) => {
+  if (el.value.length < 1) {
+    tabelInputs[i].parentElement.classList.add("alert");
+    validInput = false;
   }
 });
