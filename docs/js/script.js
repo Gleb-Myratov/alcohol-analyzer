@@ -10,11 +10,18 @@ const tabelInputs = document.querySelectorAll(".tabel__cell--input");
 
 const tabelTemplate = document.querySelector(".tabel__template"); // шаблон строки
 
-function removeAlert() {
-  tabelInputs.forEach((_, i) => {
-    tabelInputs[i].parentElement.classList.remove("alert");
-    tabelInputs[i].offsetWidth; //  перерисовка
-  });
+function addAlert(el) {
+  el.parentElement.classList.add("alert");
+  el.offsetWidth; //  перерисовка
+}
+
+function removeAlert(el) {
+  el.parentElement.classList.remove("alert");
+  el.offsetWidth; //  перерисовка
+}
+
+function removeAllAlerts() {
+  tabelInputs.forEach(removeAlert);
 }
 
 removeRowButtons.forEach((el) => {
@@ -27,10 +34,10 @@ removeRowButtons.forEach((el) => {
 //   el.value = 111; // временно заполнил инпуты
 // });
 
-// модальное окно
 mainAddButton.addEventListener("click", () => {
+  // модальное окно
   modal.classList.add("active");
-  removeAlert();
+  removeAllAlerts();
 });
 
 modal.addEventListener("click", (event) => {
@@ -39,17 +46,44 @@ modal.addEventListener("click", (event) => {
 
 //  добавление заполненной строки в таблицу
 
+const restrictToNumbers = (event, el) => {
+  // блокировка текстовых символов
+  if (
+    !/^[0-9]$/.test(event.key) &&
+    ![
+      "Backspace",
+      "ArrowLeft",
+      "ArrowRight",
+      "Delete",
+      "Tab",
+      "Control",
+    ].includes(event.key)
+  ) {
+    console.log(event.key);
+    event.preventDefault();
+  } else {
+    removeAlert(el);
+  }
+};
+
+tabelInputs.forEach((el, i) => {
+  if (i > 0)
+    el.addEventListener("keydown", (event) => restrictToNumbers(event, el));
+  if (i == 0) el.addEventListener("keydown", () => removeAlert(el));
+});
+
 createRowButton.addEventListener("click", () => {
   let rnd = Math.random();
-  removeAlert();
+  removeAllAlerts();
   let validInput = true; // пустая ячейка
-  tabelInputs.forEach((el, i) => {
+  tabelInputs.forEach((el) => {
     if (el.value.length < 1 || el.value < 1 || el.value > 9999999) {
       console.log(el.value);
-      tabelInputs[i].parentElement.classList.add("alert");
+      addAlert(el);
       validInput = false;
     } // проверка на пустой инпут
   });
+
   if (validInput) {
     tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
     let tabRows = tabel.querySelectorAll(".tabel__row");
@@ -70,18 +104,10 @@ createRowButton.addEventListener("click", () => {
     newRowLabel.setAttribute("for", `${rnd}`); // уникальные индефикаторы
     newRowInput.setAttribute("id", `${rnd}`);
 
-    // tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
+    tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
     modal.classList.remove("active");
   } else {
     console.log("добавь");
     console.log(validInput);
-  }
-});
-
-let validInput = true;
-tabelInputs.forEach((el, i) => {
-  if (el.value.length < 1) {
-    tabelInputs[i].parentElement.classList.add("alert");
-    validInput = false;
   }
 });

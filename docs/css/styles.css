@@ -90,7 +90,6 @@ body {
 }
 
 .tabel__cell--input {
-  display: flex;
   text-align: center;
   width: 100%;
   font-weight: 200;
