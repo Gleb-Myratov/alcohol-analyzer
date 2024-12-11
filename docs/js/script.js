@@ -58,6 +58,24 @@ const restrictToNumbers = (event, el) => {
   }
 };
 
+function newRow() {}
+
+const isValidWhithClass = (listInputs) => {
+  // проверка импута валидность, но первая строка не число
+  let isInvalid = false;
+  Array.from(listInputs).forEach((isValidElement) => {
+    if (
+      isValidElement.value.length < 1 ||
+      (isValidElement.value < LIMITS.MIN_VALUE &&
+        isValidElement.value > LIMITS.MAX_VALUE)
+    ) {
+      isInvalid = true;
+      addAlert(isValidElement);
+    }
+  });
+  return !isInvalid;
+};
+
 // внизу должна быть инициализация
 
 removeRowButtons.forEach((el) => {
@@ -87,19 +105,8 @@ tabelInputs.forEach((el, i) => {
 createRowButton.addEventListener("click", () => {
   let randomID = Math.random();
   removeAllAlerts();
-  let validInput = true; // пустая ячейка
-  tabelInputs.forEach((el) => {
-    if (
-      el.value.length < 1 ||
-      el.value < LIMITS.MIN_VALUE ||
-      el.value > LIMITS.MAX_VALUE
-    ) {
-      addAlert(el);
-      validInput = false;
-    } // проверка на пустой инпут
-  });
 
-  if (validInput) {
+  if (isValidWhithClass(tabelInputs)) {
     tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
     const tabRows = tabel.querySelectorAll(".tabel__row");
     const newRow = tabRows[tabRows.length - 1]; // новая строка
@@ -111,15 +118,15 @@ createRowButton.addEventListener("click", () => {
     for (let i = 0; i < 5; i++) {
       newRowList[i + 1].textContent = tabelInputs[i].value; // добавление в шаблон из инпутов
     }
-    newRowDelBtn.addEventListener("click", () =>
-      newRowDelBtn.parentElement.parentElement.remove()
-    ); // удаление строки в новой строке
 
     newRow.setAttribute("data-row", `${randomID}`);
     newRowLabel.setAttribute("for", `${randomID}`); // уникальные индефикаторы
     newRowInput.setAttribute("id", `${randomID}`);
 
     tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
+    newRowDelBtn.addEventListener("click", () =>
+      newRowDelBtn.parentElement.parentElement.remove()
+    ); // удаление строки в новой строке
     removeModal();
   } else {
     console.error("добавь");
