@@ -50,15 +50,12 @@ const addModal = () => modal.classList.add(CLASS_NAMES.ACTIVE);
 const restrictToNumbers = (event, el) => {
   // для циферной ячейки инпута
   if (event.ctrlKey && comboKeys.includes(event.key.toLowerCase())) return;
-
   if (!/^[0-9]$/.test(event.key) && !allowedKeys.includes(event.key)) {
     event.preventDefault();
   } else {
     removeAlert(el);
   }
 };
-
-function newRow() {}
 
 const isValidWhithClass = (listInputs) => {
   // проверка импута валидность, но первая строка не число
@@ -76,13 +73,43 @@ const isValidWhithClass = (listInputs) => {
   return !isInvalid;
 };
 
+let addNewRow = () => {
+  if (isValidWhithClass(tabelInputs)) {
+    let randomID = Math.random();
+    tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
+    const tabRows = tabel.querySelectorAll(".tabel__row");
+    const newRow = tabRows[tabRows.length - 1]; // новая строка
+    const newRowList = newRow.querySelectorAll(".tabel__cell-text"); // список новой строки
+    const newRowDelBtn = newRow.querySelector(".tabel__remove-button"); // кнопка нов строки
+    const newRowLabel = newRow.querySelector(".tabel__checkbox-label"); // лейбл
+    const newRowInput = newRow.querySelector(".tabel__checkbox-button"); // чекбокс
+
+    newRowList.forEach(
+      (newCellText, numValueCell) =>
+        (newCellText.textContent = tabelInputs[numValueCell].value)
+    );
+    newRow.setAttribute("data-row", `${randomID}`);
+    newRowLabel.setAttribute("for", `${randomID}`); // уникальные индефикаторы
+    newRowInput.setAttribute("id", `${randomID}`);
+
+    tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
+    attachRemoveRowHeandler(newRowDelBtn);
+
+    removeModal();
+  } else {
+    console.error("добавь");
+  }
+};
+
+let attachRemoveRowHeandler = (button) => {
+  button.addEventListener("click", () => {
+    button.parentElement.parentElement.remove();
+  });
+};
+
 // внизу должна быть инициализация
 
-removeRowButtons.forEach((el) => {
-  el.addEventListener("click", () => {
-    el.parentElement.parentElement.remove();
-  });
-});
+removeRowButtons.forEach(attachRemoveRowHeandler);
 
 mainAddButton.addEventListener("click", () => {
   // модальное окно
@@ -103,32 +130,6 @@ tabelInputs.forEach((el, i) => {
 });
 
 createRowButton.addEventListener("click", () => {
-  let randomID = Math.random();
   removeAllAlerts();
-
-  if (isValidWhithClass(tabelInputs)) {
-    tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
-    const tabRows = tabel.querySelectorAll(".tabel__row");
-    const newRow = tabRows[tabRows.length - 1]; // новая строка
-    const newRowList = newRow.querySelectorAll(".tabel__cell"); // список новой строки
-    const newRowDelBtn = newRow.querySelector(".tabel__remove-button"); // кнопка нов строки
-    const newRowLabel = newRow.querySelector(".tabel__checkbox-label"); // лейбл
-    const newRowInput = newRow.querySelector(".tabel__checkbox-button"); // чекбокс
-
-    for (let i = 0; i < 5; i++) {
-      newRowList[i + 1].textContent = tabelInputs[i].value; // добавление в шаблон из инпутов
-    }
-
-    newRow.setAttribute("data-row", `${randomID}`);
-    newRowLabel.setAttribute("for", `${randomID}`); // уникальные индефикаторы
-    newRowInput.setAttribute("id", `${randomID}`);
-
-    tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
-    newRowDelBtn.addEventListener("click", () =>
-      newRowDelBtn.parentElement.parentElement.remove()
-    ); // удаление строки в новой строке
-    removeModal();
-  } else {
-    console.error("добавь");
-  }
+  addNewRow();
 });
