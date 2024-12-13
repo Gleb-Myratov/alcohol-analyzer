@@ -23,13 +23,13 @@ const comboKeys = ["z", "x", "c", "v", "a", "я", "ч", "с", "м", "ф"];
 //dom
 
 const tabel = document.querySelector(".tabel__content");
-const removeRowButtons = document.querySelectorAll(".tabel__remove-button"); // корзина
 const mainAddButton = document.getElementById("main-add-button");
 const createRowButton = document.getElementById("create-row-button");
 const modal = document.getElementById("modal");
 const rowInpiuts = document.getElementById("row-inputs");
 const tabelInputs = document.querySelectorAll(".tabel__cell--input");
 const tabelTemplate = document.querySelector(".tabel__template"); // шаблон строки
+const chekboxes = document.querySelectorAll(".tabel__checkbox-button");
 
 //fcn
 
@@ -91,25 +91,31 @@ let addNewRow = () => {
     newRow.setAttribute("data-row", `${randomID}`);
     newRowLabel.setAttribute("for", `${randomID}`); // уникальные индефикаторы
     newRowInput.setAttribute("id", `${randomID}`);
-
+    newRowDelBtn.setAttribute("data-remove", `${randomID}`);
     tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
-    attachRemoveRowHeandler(newRowDelBtn);
-
     removeModal();
   } else {
     console.error("добавь");
   }
 };
 
-let attachRemoveRowHeandler = (button) => {
-  button.addEventListener("click", () => {
-    button.parentElement.parentElement.remove();
-  });
-};
+// инициализация
 
-// внизу должна быть инициализация
+chekboxes.forEach((a) => {
+  a.checked = true;
+});
 
-removeRowButtons.forEach(attachRemoveRowHeandler);
+tabel.addEventListener("click", (event) => {
+  const clickedElement = event.target;
+  const parent = clickedElement.parentElement;
+
+  if (parent && parent.hasAttribute("data-remove")) {
+    const dataIdAttribute = parent.getAttribute("data-remove");
+    if (parent.hasAttribute("data-remove")) {
+      document.querySelector(`[data-row="${dataIdAttribute}"]`).remove();
+    }
+  }
+});
 
 mainAddButton.addEventListener("click", () => {
   // модальное окно
@@ -120,8 +126,6 @@ mainAddButton.addEventListener("click", () => {
 modal.addEventListener("click", (event) => {
   if (event.target == modal) removeModal();
 });
-
-//  добавление заполненной строки в таблицу
 
 tabelInputs.forEach((el, i) => {
   if (i > 0)
