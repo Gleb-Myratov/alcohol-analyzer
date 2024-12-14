@@ -29,7 +29,7 @@ const modal = document.getElementById("modal");
 const rowInpiuts = document.getElementById("row-inputs");
 const tabelInputs = document.querySelectorAll(".tabel__cell--input");
 const tabelTemplate = document.querySelector(".tabel__template"); // шаблон строки
-const chekboxes = document.querySelectorAll(".tabel__checkbox-button");
+console.log(tabel.children[1].children[0].children[0].children[0]);
 
 //fcn
 
@@ -46,6 +46,10 @@ const removeAlert = (el) => {
 const removeAllAlerts = () => tabelInputs.forEach(removeAlert);
 const removeModal = () => modal.classList.remove(CLASS_NAMES.ACTIVE);
 const addModal = () => modal.classList.add(CLASS_NAMES.ACTIVE);
+
+const findCheckBoxes = () => {
+  const chekboxes = document.querySelectorAll(".tabel__checkbox-button");
+};
 
 const restrictToNumbers = (event, el) => {
   // для циферной ячейки инпута
@@ -99,21 +103,51 @@ let addNewRow = () => {
   }
 };
 
-// инициализация
+const masterChekbox = document.getElementById("checkbox-0");
+// const childChekbox = tabel.
 
-chekboxes.forEach((a) => {
-  a.checked = true;
-});
+const chekedAll = () => {
+  const rowColection = [...tabel.children].slice(1);
+  rowColection.forEach((element) => {
+    element.querySelector('input[type="checkbox"]').checked = true;
+  });
+};
+const unChekedAll = () => {
+  const rowColection = [...tabel.children].slice(1);
+  rowColection.forEach((element) => {
+    element.querySelector('input[type="checkbox"]').checked = false;
+  });
+};
+const isAllChecked = () => {
+  const rowColection = [...tabel.children].slice(1);
+  let test = true;
+  rowColection.forEach((element) => {
+    if (element.querySelector('input[type="checkbox"]').checked === false)
+      test = false;
+  });
+  return test;
+};
 
 tabel.addEventListener("click", (event) => {
   const clickedElement = event.target;
-  const parent = clickedElement.parentElement;
+  console.dir(clickedElement);
 
-  if (parent && parent.hasAttribute("data-remove")) {
-    const dataIdAttribute = parent.getAttribute("data-remove");
-    if (parent.hasAttribute("data-remove")) {
-      document.querySelector(`[data-row="${dataIdAttribute}"]`).remove();
-    }
+  if (clickedElement.hasAttribute("data-remove")) {
+    const dataIdAttribute = clickedElement.getAttribute("data-remove");
+    document.querySelector(`[data-row="${dataIdAttribute}"]`).remove();
+  }
+
+  const masterAtive = masterChekbox.checked === true;
+
+  if (clickedElement === masterChekbox && masterAtive) {
+    chekedAll();
+  }
+  if (clickedElement === masterChekbox && !masterAtive) {
+    unChekedAll();
+  }
+  if (clickedElement.getAttribute("checkbox-role") === "child") {
+    if (isAllChecked()) masterChekbox.checked = true;
+    if (!isAllChecked()) masterChekbox.checked = false;
   }
 });
 

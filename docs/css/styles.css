@@ -167,6 +167,7 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 5px;
+  pointer-events: none;
 }
 .tabel__checkbox-button:checked + .tabel__checkbox-icon {
   background: #5c8dd6;
@@ -185,6 +186,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  /* pointer-events: none; */
 }
 .tabel__remove-button {
   display: flex;
@@ -200,6 +202,7 @@ body {
   width: 33px;
   background-size: 50%;
   background-repeat: no-repeat;
+  pointer-events: none;
 }
 .tabel__content--form {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
