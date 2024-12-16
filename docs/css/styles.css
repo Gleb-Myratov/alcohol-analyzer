@@ -49,12 +49,12 @@ body {
 }
 
 /* грид */
-.tabel {
+.table {
   width: 100%;
   margin-bottom: 10px;
 }
 
-.tabel__content {
+.table__content {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   width: 100%;
@@ -70,7 +70,7 @@ body {
   overflow: hidden;
 }
 
-.tabel__cell {
+.table__cell {
   position: relative;
   display: grid;
   text-align: center;
@@ -89,7 +89,7 @@ body {
   height: 60px;
 }
 
-.tabel__cell--input {
+.table__cell--input {
   text-align: center;
   width: 100%;
   font-weight: 200;
@@ -98,18 +98,18 @@ body {
   /* align-items: center; */
 }
 
-.tabel__cell::-webkit-scrollbar {
+.table__cell::-webkit-scrollbar {
   display: none; /* Скрыть скроллбар */
 }
-.tabel__cell--header {
+.table__cell--header {
   color: #8f97a3;
   font-weight: 500;
 }
 
-/* .tabel__row:last-child .tabel__cell {
+/* .table__row:last-child .table__cell {
   border-bottom: none;
 }
-.tabel__cell:last-child {
+.table__cell:last-child {
   border-right: none;
 } */
 
@@ -155,13 +155,13 @@ body {
   max-height: 70%;
   max-width: 70%;
 }
-.tabel__row {
+.table__row {
   display: contents;
 }
-.tabel__checkbox-button {
+.table__checkbox-button {
   display: none;
 }
-.tabel__checkbox-icon {
+.table__checkbox-icon {
   display: flex;
   border: #1f437a solid 1.7px;
   width: 18px;
@@ -169,17 +169,17 @@ body {
   border-radius: 5px;
   pointer-events: none;
 }
-.tabel__checkbox-button:checked + .tabel__checkbox-icon {
+.table__checkbox-button:checked + .table__checkbox-icon {
   background: #5c8dd6;
   background-image: url("../assets/checkbox.png");
   background-position: center center;
   background-size: 75%;
   background-repeat: no-repeat;
 }
-.tabel__checkbox-button--header:checked + .tabel__checkbox-icon--header {
+.table__checkbox-button--header:checked + .table__checkbox-icon--header {
   background-image: url("../assets/checkbox-select-all.png");
 }
-.tabel__checkbox-label {
+.table__checkbox-label {
   width: 100%;
   height: 100%;
   display: flex;
@@ -188,14 +188,14 @@ body {
   cursor: pointer;
   /* pointer-events: none; */
 }
-.tabel__remove-button {
+.table__remove-button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
 }
-.tabel__remove-button-icon {
+.table__remove-button-icon {
   background-position: 50% 40%;
   background-image: url("../assets/trash-icon.png");
   height: 100%;
@@ -204,7 +204,7 @@ body {
   background-repeat: no-repeat;
   pointer-events: none;
 }
-.tabel__content--form {
+.table__content--form {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
 }
@@ -232,7 +232,7 @@ body {
   align-items: center;
   /* justify-content: space-between; */
 }
-.modal__form-tabel {
+.modal__form-table {
   flex: 1;
   padding-right: 10px;
 }

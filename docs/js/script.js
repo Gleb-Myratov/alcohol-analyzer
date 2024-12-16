@@ -22,14 +22,14 @@ const comboKeys = ["z", "x", "c", "v", "a", "я", "ч", "с", "м", "ф"];
 
 //dom
 
-const tabel = document.querySelector(".tabel__content");
+const table = document.querySelector(".table__content");
 const mainAddButton = document.getElementById("main-add-button");
 const createRowButton = document.getElementById("create-row-button");
 const modal = document.getElementById("modal");
 const rowInpiuts = document.getElementById("row-inputs");
-const tabelInputs = document.querySelectorAll(".tabel__cell--input");
-const tabelTemplate = document.querySelector(".tabel__template"); // шаблон строки
-console.log(tabel.children[1].children[0].children[0].children[0]);
+const tableInputs = document.querySelectorAll(".table__cell--input");
+const tableTemplate = document.querySelector(".table__template"); // шаблон строки
+console.log(table.children[1].children[0].children[0].children[0]);
 
 //fcn
 
@@ -43,12 +43,12 @@ const removeAlert = (el) => {
   el.offsetWidth;
 };
 
-const removeAllAlerts = () => tabelInputs.forEach(removeAlert);
+const removeAllAlerts = () => tableInputs.forEach(removeAlert);
 const removeModal = () => modal.classList.remove(CLASS_NAMES.ACTIVE);
 const addModal = () => modal.classList.add(CLASS_NAMES.ACTIVE);
 
 const findCheckBoxes = () => {
-  const chekboxes = document.querySelectorAll(".tabel__checkbox-button");
+  const chekboxes = document.querySelectorAll(".table__checkbox-button");
 };
 
 const restrictToNumbers = (event, el) => {
@@ -61,7 +61,7 @@ const restrictToNumbers = (event, el) => {
   }
 };
 
-const isValidWhithClass = (listInputs) => {
+const isValidWithClass = (listInputs) => {
   // проверка импута валидность, но первая строка не число
   let isInvalid = false;
   Array.from(listInputs).forEach((isValidElement) => {
@@ -78,76 +78,58 @@ const isValidWhithClass = (listInputs) => {
 };
 
 let addNewRow = () => {
-  if (isValidWhithClass(tabelInputs)) {
+  if (isValidWithClass(tableInputs)) {
     let randomID = Math.random();
-    tabel.append(tabelTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
-    const tabRows = tabel.querySelectorAll(".tabel__row");
+    table.append(tableTemplate.content.cloneNode(true)); // клонирование шаблона и добавление в таблу
+    const tabRows = table.querySelectorAll(".table__row");
     const newRow = tabRows[tabRows.length - 1]; // новая строка
-    const newRowList = newRow.querySelectorAll(".tabel__cell-text"); // список новой строки
-    const newRowDelBtn = newRow.querySelector(".tabel__remove-button"); // кнопка нов строки
-    const newRowLabel = newRow.querySelector(".tabel__checkbox-label"); // лейбл
-    const newRowInput = newRow.querySelector(".tabel__checkbox-button"); // чекбокс
+    const newRowList = newRow.querySelectorAll(".table__cell-text"); // список новой строки
+    const newRowDelBtn = newRow.querySelector(".table__remove-button"); // кнопка нов строки
+    const newRowLabel = newRow.querySelector(".table__checkbox-label"); // лейбл
+    const newRowInput = newRow.querySelector(".table__checkbox-button"); // чекбокс
 
     newRowList.forEach(
       (newCellText, numValueCell) =>
-        (newCellText.textContent = tabelInputs[numValueCell].value)
+        (newCellText.textContent = tableInputs[numValueCell].value)
     );
     newRow.setAttribute("data-row", `${randomID}`);
     newRowLabel.setAttribute("for", `${randomID}`); // уникальные индефикаторы
     newRowInput.setAttribute("id", `${randomID}`);
     newRowDelBtn.setAttribute("data-remove", `${randomID}`);
-    tabelInputs.forEach((el) => (el.value = "")); // очистка инпута
+    tableInputs.forEach((el) => (el.value = "")); // очистка инпута
     removeModal();
   } else {
     console.error("добавь");
   }
 };
 
-const masterChekbox = document.getElementById("checkbox-0");
-// const childChekbox = tabel.
+const masterCheckbox = document.getElementById("checkbox-0");
 
-const chekedAll = () => {
-  const rowColection = [...tabel.children].slice(1);
-  rowColection.forEach((element) => {
-    element.querySelector('input[type="checkbox"]').checked = true;
+const setChechboxesStatus = (collection, state) => {
+  collection.forEach((element) => {
+    element.querySelector('input[type="checkbox"]').checked = state;
   });
-};
-const unChekedAll = () => {
-  const rowColection = [...tabel.children].slice(1);
-  rowColection.forEach((element) => {
-    element.querySelector('input[type="checkbox"]').checked = false;
-  });
-};
-const isAllChecked = () => {
-  const rowColection = [...tabel.children].slice(1);
-  let test = true;
-  rowColection.forEach((element) => {
-    if (element.querySelector('input[type="checkbox"]').checked === false)
-      test = false;
-  });
-  return test;
 };
 
-tabel.addEventListener("click", (event) => {
+const isAllChecked = (сollection) => {
+  return сollection.every(
+    (row) => row.querySelector('input[type="checkbox"]').checked
+  );
+};
+
+table.addEventListener("click", (event) => {
   const clickedElement = event.target;
-  console.dir(clickedElement);
+  const rowCollection = [...table.children].slice(1); //магическое число
 
   if (clickedElement.hasAttribute("data-remove")) {
     const dataIdAttribute = clickedElement.getAttribute("data-remove");
     document.querySelector(`[data-row="${dataIdAttribute}"]`).remove();
   }
+  if (clickedElement === masterCheckbox)
+    setChechboxesStatus(rowCollection, masterCheckbox.checked);
 
-  const masterAtive = masterChekbox.checked === true;
-
-  if (clickedElement === masterChekbox && masterAtive) {
-    chekedAll();
-  }
-  if (clickedElement === masterChekbox && !masterAtive) {
-    unChekedAll();
-  }
-  if (clickedElement.getAttribute("checkbox-role") === "child") {
-    if (isAllChecked()) masterChekbox.checked = true;
-    if (!isAllChecked()) masterChekbox.checked = false;
+  if (clickedElement.matches('[checkbox-role="child"]')) {
+    masterCheckbox.checked = isAllChecked(rowCollection);
   }
 });
 
@@ -158,10 +140,10 @@ mainAddButton.addEventListener("click", () => {
 });
 
 modal.addEventListener("click", (event) => {
-  if (event.target == modal) removeModal();
+  if (event.target === modal) removeModal();
 });
 
-tabelInputs.forEach((el, i) => {
+tableInputs.forEach((el, i) => {
   if (i > 0)
     el.addEventListener("keydown", (event) => restrictToNumbers(event, el));
   if (i === 0) el.addEventListener("keydown", () => removeAlert(el));
