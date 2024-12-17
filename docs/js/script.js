@@ -29,9 +29,10 @@ const modal = document.getElementById("modal");
 const rowInpiuts = document.getElementById("row-inputs");
 const tableInputs = document.querySelectorAll(".table__cell--input");
 const tableTemplate = document.querySelector(".table__template"); // шаблон строки
-console.log(table.children[1].children[0].children[0].children[0]);
+const modalInputs = document.getElementById("row-inputs");
 
 //fcn
+console.log(modalInputs);
 
 const addAlert = (el) => {
   el.parentElement.classList.add(CLASS_NAMES.ALERT);
@@ -44,12 +45,7 @@ const removeAlert = (el) => {
 };
 
 const removeAllAlerts = () => tableInputs.forEach(removeAlert);
-const removeModal = () => modal.classList.remove(CLASS_NAMES.ACTIVE);
-const addModal = () => modal.classList.add(CLASS_NAMES.ACTIVE);
-
-const findCheckBoxes = () => {
-  const chekboxes = document.querySelectorAll(".table__checkbox-button");
-};
+const toggleModal = () => modal.classList.toggle(CLASS_NAMES.ACTIVE);
 
 const restrictToNumbers = (event, el) => {
   // для циферной ячейки инпута
@@ -97,7 +93,7 @@ let addNewRow = () => {
     newRowInput.setAttribute("id", `${randomID}`);
     newRowDelBtn.setAttribute("data-remove", `${randomID}`);
     tableInputs.forEach((el) => (el.value = "")); // очистка инпута
-    removeModal();
+    toggleModal();
   } else {
     console.error("добавь");
   }
@@ -111,11 +107,13 @@ const setChechboxesStatus = (collection, state) => {
   });
 };
 
-const isAllChecked = (сollection) => {
-  return сollection.every(
+const isAllChecked = (collection) => {
+  return collection.every(
     (row) => row.querySelector('input[type="checkbox"]').checked
   );
 };
+
+//инициализация
 
 table.addEventListener("click", (event) => {
   const clickedElement = event.target;
@@ -124,29 +122,30 @@ table.addEventListener("click", (event) => {
   if (clickedElement.hasAttribute("data-remove")) {
     const dataIdAttribute = clickedElement.getAttribute("data-remove");
     document.querySelector(`[data-row="${dataIdAttribute}"]`).remove();
-  }
-  if (clickedElement === masterCheckbox)
+  } else if (clickedElement.dataset.checkboxRole === "master") {
     setChechboxesStatus(rowCollection, masterCheckbox.checked);
-
-  if (clickedElement.matches('[checkbox-role="child"]')) {
+  } else if (clickedElement.dataset.checkboxRole === "child") {
     masterCheckbox.checked = isAllChecked(rowCollection);
   }
 });
 
 mainAddButton.addEventListener("click", () => {
   // модальное окно
-  addModal();
+  toggleModal();
   removeAllAlerts();
 });
 
 modal.addEventListener("click", (event) => {
-  if (event.target === modal) removeModal();
+  if (event.target === modal) toggleModal();
 });
 
-tableInputs.forEach((el, i) => {
-  if (i > 0)
-    el.addEventListener("keydown", (event) => restrictToNumbers(event, el));
-  if (i === 0) el.addEventListener("keydown", () => removeAlert(el));
+modalInputs.addEventListener("keydown", (event) => {
+  const tartget = event.target;
+  if (tartget.dataset.type === "number") {
+    restrictToNumbers(event, tartget);
+  } else if (tartget.dataset.type === "text") {
+    removeAlert(tartget); // тут ещё что то должно быть
+  }
 });
 
 createRowButton.addEventListener("click", () => {
