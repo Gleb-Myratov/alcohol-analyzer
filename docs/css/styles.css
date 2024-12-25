@@ -58,8 +58,6 @@ body {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
   width: 100%;
-  /* min-width: 600px;
-  min-height: 600px; */
   background-color: #fff;
   border-radius: 20px;
   border: 2px #8f97a3 solid;
@@ -89,7 +87,7 @@ body {
   height: 60px;
 }
 
-.table__cell--input {
+.table__cell-input {
   text-align: center;
   width: 100%;
   font-weight: 200;
@@ -136,11 +134,14 @@ body {
   }
 }
 .footer {
+  display: flex;
   margin-bottom: 10px;
   width: 100%;
+  justify-content: space-between;
+  /* flex-flow: column wrap; */
 }
-.add-button {
-  width: 100%;
+.button {
+  /* width: 49.5%; */
   height: 50px;
   background: #5c8dd6;
   border-radius: 20px;
@@ -150,10 +151,24 @@ body {
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-
-.add-button-image {
-  max-height: 70%;
-  max-width: 70%;
+.add-button--footer {
+  width: 79%;
+}
+.result-button--footer {
+  width: 20%;
+  background: #1f9a8c;
+}
+.result-button-text {
+  transform: translateY(1px);
+  color: #e0e4eb;
+  font-size: 18px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+.button-image {
+  max-height: 55%;
+  max-width: 55%;
 }
 .table__row {
   display: contents;
@@ -204,10 +219,12 @@ body {
   background-repeat: no-repeat;
   pointer-events: none;
 }
-.table__content--form {
+.table__content--add-row,
+.table__content--edit-row {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
 }
+
 .modal {
   display: flex;
   align-items: center;
@@ -226,23 +243,28 @@ body {
   visibility: visible;
   opacity: 1;
 }
-.modal__content--form {
-  z-index: 103;
+.modal__content {
   display: flex;
   align-items: center;
   position: relative;
-  /* justify-content: space-between; */
 }
 .modal__form-table {
   flex: 1;
-  padding-right: 10px;
+  padding-right: 5px;
 }
-.add-button--modal {
+.add-button--modal,
+.edit-button--modal {
+  display: none;
   margin: 0;
-  width: 110px;
+  width: 124px;
   height: auto;
   align-self: stretch;
 }
+.add-button--modal.active,
+.edit-button--modal.active {
+  display: flex;
+}
+
 .modal__validation-error {
   padding: 18px;
   position: absolute;

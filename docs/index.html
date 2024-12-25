@@ -7,10 +7,7 @@
 
     <link rel="stylesheet" href="css/reset-normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div class="page-container">
@@ -27,9 +24,7 @@
         <div class="table">
           <div class="table__content">
             <div class="table__row table__row--header">
-              <div
-                class="table__cell table__cell--header table__cell--checkbox"
-              >
+              <div class="table__cell table__cell--header table__cell--checkbox">
                 <label for="checkbox-0" class="table__checkbox-label">
                   <input
                     type="checkbox"
@@ -39,9 +34,7 @@
                     data-checkbox-role="master"
                     class="table__checkbox-button table__checkbox-button--header table__checkbox-master"
                   />
-                  <span
-                    class="table__checkbox-icon table__checkbox-icon--header"
-                  ></span>
+                  <span class="table__checkbox-icon table__checkbox-icon--header"></span>
                 </label>
               </div>
               <div class="table__cell table__cell--header">
@@ -64,18 +57,11 @@
             <div class="table__row" data-row="1">
               <div class="table__cell table__cell--checkbox">
                 <label for="checkbox-1" class="table__checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked
-                    name="drink"
-                    id="checkbox-1"
-                    data-checkbox-role="child"
-                    class="table__checkbox-button"
-                  />
+                  <input type="checkbox" checked name="drink" id="checkbox-1" data-checkbox-role="child" class="table__checkbox-button" />
                   <span class="table__checkbox-icon"></span>
                 </label>
               </div>
-              <div class="table__cell table__cell">
+              <div class="table__cell">
                 <span class="table__cell-text">Водка</span>
               </div>
               <div class="table__cell">
@@ -99,14 +85,7 @@
             <div class="table__row" data-row="2">
               <div class="table__cell table__cell--checkbox">
                 <label for="checkbox-2" class="table__checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked
-                    name="drink"
-                    id="checkbox-2"
-                    data-checkbox-role="child"
-                    class="table__checkbox-button"
-                  />
+                  <input type="checkbox" checked name="drink" id="checkbox-2" data-checkbox-role="child" class="table__checkbox-button" />
                   <span class="table__checkbox-icon"></span>
                 </label>
               </div>
@@ -134,17 +113,9 @@
           </div>
           <template class="table__template" id="table__template">
             <div class="table__row" data-row="">
-              <div
-                class="table__cell table__cell--checkbox table__cell--checked"
-              >
+              <div class="table__cell table__cell--checkbox table__cell--checked">
                 <label class="table__checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked
-                    name="drink"
-                    data-checkbox-role="child"
-                    class="table__checkbox-button"
-                  />
+                  <input type="checkbox" checked name="drink" data-checkbox-role="child" class="table__checkbox-button" />
                   <span class="table__checkbox-icon"></span>
                 </label>
               </div>
@@ -174,16 +145,21 @@
       </div>
       <div class="container">
         <div class="footer">
-          <button class="add-button add-button--footer" id="main-add-button">
-            <img class="add-button-image" src="assets/plus.png" alt="Add" />
+          <button class="button add-button--footer" id="modal-add-button">
+            <img class="button-image" src="assets/plus.png" alt="Add" />
+          </button>
+          <button class="button result-button--footer" id="modal-add-button">
+            <!-- <img class="button-image" src="assets/plus.png" alt="Add" /> -->
+            <span class="result-button-text">расчитать</span>
           </button>
         </div>
       </div>
     </div>
-    <div class="modal modal--form" id="modal">
-      <div class="modal__content modal__content--form">
+
+    <div class="modal modal__add-row" id="modal">
+      <div class="modal__content">
         <form class="modal__form-table">
-          <div class="table__content table__content--form">
+          <div class="table__content table__content--add-row">
             <div class="table__row">
               <div class="table__cell table__cell--header">
                 <span class="table__cell-text">Название<br />напитка</span>
@@ -203,52 +179,32 @@
             </div>
             <div class="table__row" id="row-inputs">
               <div class="table__cell">
-                <input
-                  required
-                  type="text"
-                  class="table__cell--input"
-                  data-type="text"
-                />
+                <input required type="text" class="table__cell-input table__cell--add-input" data-type="text" />
               </div>
 
               <div class="table__cell">
-                <input
-                  type="number"
-                  class="table__cell--input"
-                  data-type="number"
-                />
+                <input type="number" class="table__cell-input table__cell--add-input" data-type="number" />
               </div>
               <div class="table__cell">
-                <input
-                  type="number"
-                  class="table__cell--input"
-                  data-type="number"
-                />
+                <input type="number" class="table__cell-input table__cell--add-input" data-type="number" />
               </div>
               <div class="table__cell">
-                <input
-                  type="number"
-                  class="table__cell--input"
-                  data-type="number"
-                />
+                <input type="number" class="table__cell-input table__cell--add-input" data-type="number" />
               </div>
               <div class="table__cell">
-                <input
-                  type="number"
-                  class="table__cell--input"
-                  data-type="number"
-                />
+                <input type="number" class="table__cell-input table__cell--add-input" data-type="number" />
               </div>
             </div>
           </div>
         </form>
-        <button class="add-button add-button--modal" id="create-row-button">
-          <img class="add-button-image" src="assets/plus.png" alt="Add" />
+        <button class="button add-button--modal active" id="create-row-button">
+          <img class="button-image" src="assets/plus.png" alt="Add" />
+        </button>
+        <button class="button edit-button--modal" id="create-row-button">
+          <img class="button-image" src="assets/edit.png" alt="Add" />
         </button>
         <div class="modal__validation-error">
-          <span class="modal__error-text"
-            >Поля, необходимые для заполнения</span
-          >
+          <span class="modal__error-text">Поля, необходимые для заполнения</span>
         </div>
       </div>
     </div>
