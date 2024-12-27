@@ -12,6 +12,9 @@ const CLASS_NAMES = {
 
 const appData = {
   editedRow: null,
+  statusModalAdd: false,
+  modalAddMemory: [],
+  convertMemoryFromList: null,
 };
 
 const allowedKeys = ["Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab", "Control"];
@@ -23,7 +26,6 @@ const table = document.querySelector(".table__content");
 const modalOpenAddButton = document.getElementById("modal-add-button");
 const createRowButton = document.getElementById("create-row-button");
 const modalAddRow = document.querySelector(".modal__add-row");
-// const rowInputs = document.getElementById("row-inputs");
 const tableAddInputs = document.querySelectorAll(".table__cell--add-input");
 const tableTemplate = document.querySelector(".table__template"); // шаблон строки
 const modalRowWithInputs = document.getElementById("row-inputs");
@@ -48,7 +50,19 @@ const removeAlert = (el) => {
 const removeAllAlerts = () => tableAddInputs.forEach(removeAlert);
 const active = (element) => element.classList.add(CLASS_NAMES.ACTIVE);
 const deactivate = (element) => element.classList.remove(CLASS_NAMES.ACTIVE);
-const clearInputs = (inputs) => inputs.forEach((input) => (input.value = ""));
+
+const setInputValues = (inputs, values = []) => {
+  inputs.forEach((input, index) => (input.value = values[index]?.textContent || values[index] || ""));
+};
+
+const saveElementData = (selector) => {
+  const elements = document.querySelectorAll(selector);
+  const savedData = [];
+  elements.forEach((element) => {
+    savedData.push(element.value);
+  });
+  return savedData;
+};
 
 const restrictToNumbers = (event, el) => {
   // для циферной ячейки инпута
@@ -93,7 +107,7 @@ const addNewRow = () => {
     newRowDelBtn.setAttribute("data-remove", `${randomID}`);
     deactivate(modalAddRow);
     deactivate(modalValidError);
-    clearInputs(tableAddInputs);
+    setInputValues(tableAddInputs);
   } else {
     active(modalValidError);
     console.error("добавь");
@@ -107,18 +121,12 @@ const editRow = (editedRow) => {
     });
     deactivate(modalAddRow);
     deactivate(editButtonModal);
-    clearInputs(tableAddInputs);
+    setInputValues(tableAddInputs);
     active(addButtonModal);
   } else {
     active(modalValidError);
     console.error("добавь");
   }
-};
-
-const containValues = (inputsColection, valuesColection) => {
-  inputsColection.forEach((input, index) => {
-    input.value = valuesColection[index].textContent;
-  });
 };
 
 const setCheckboxesStatus = (collection, state) => {
@@ -152,17 +160,20 @@ table.addEventListener("click", (event) => {
     deactivate(addButtonModal);
     active(editButtonModal);
     active(modalAddRow);
-    const rowTextValues = clickedRow.querySelectorAll(".table__cell-text");
+    const rowTextValues = clickedRow.querySelectorAll(".table__cell-text"); // повторы!!!!
     appData.editedRow = rowTextValues;
-    containValues(modalInputs, rowTextValues);
+    setInputValues(modalInputs, rowTextValues);
+    appData.statusModalAdd = false;
   }
 });
 
 modalOpenAddButton.addEventListener("click", () => {
   // модальное окно
   active(modalAddRow);
+  // setInputValues(modalInputs);
   removeAllAlerts();
-  // clearInputs(modalInputs);
+  appData.statusModalAdd = true;
+  setInputValues(modalInputs, appData.modalAddMemory);
 });
 
 modalAddRow.addEventListener("click", (event) => {
@@ -171,6 +182,7 @@ modalAddRow.addEventListener("click", (event) => {
     active(addButtonModal);
     deactivate(modalAddRow);
     deactivate(modalValidError);
+    if (appData.statusModalAdd) appData.modalAddMemory = saveElementData(".table__cell-input");
   }
 });
 
@@ -199,3 +211,6 @@ createRowButton.addEventListener("click", () => {
 editButtonModal.addEventListener("click", () => {
   editRow(appData.editedRow);
 });
+
+let popopo = { a: 1 };
+console.log(popopo.b);
